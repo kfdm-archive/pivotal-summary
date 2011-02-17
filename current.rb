@@ -30,7 +30,7 @@ def format_state(str)
 	end
 end
 
-puts "Printing tickets since #{@today.cyan}"
+puts "Printing tickets for #{@today.cyan}"
 
 PivotalTracker::Client.token = @token
 
@@ -41,8 +41,7 @@ PivotalTracker::Client.token = @token
 		puts project.name.yellow.bold
 		stories = @a_project.stories.all(
 				:owner => @owner,
-				:state => @state, 
-				:modified_since => @today
+				:state => @state
 			)
 		
 		stories.each do |story|
