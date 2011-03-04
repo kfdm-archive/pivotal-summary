@@ -14,11 +14,11 @@ require 'colored'
 require '_common'
 
 @token = `defaults read com.pivotaltracker token`
-@owner = `defaults read com.pivotaltracker name`
-@state = ['accepted']
-@yesterday = (Time.now - 86400).strftime("%m/%d/%Y")
+@requester = `defaults read com.pivotaltracker name`
+@state = ['delivered']
+@today = Time.now.strftime("%m/%d/%Y")
 
-puts "Printing tickets since #{@yesterday.cyan}"
+puts "Printing tickets for #{@today.cyan}"
 
 PivotalTracker::Client.token = @token
 
@@ -26,10 +26,10 @@ PivotalTracker::Client.token = @token
 @projects.each do |project|
 	begin
 		@a_project = PivotalTracker::Project.find(project.id)
-		puts project.name.yellow.bold
-		stories = @a_project.stories.all(:owner => @owner,
-				:state => @state, 
-				:modified_since => @yesterday
+		puts "#{project.name.yellow.bold} - https://www.pivotaltracker.com/projects/#{project.id}"
+		stories = @a_project.stories.all(
+				:requester => @requester,
+				:state => @state
 			)
 		
 		stories.each do |story|
