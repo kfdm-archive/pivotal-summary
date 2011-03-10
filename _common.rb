@@ -30,6 +30,6 @@ end
 
 def format_story(story)
 	puts "#{story.name} - #{format_state(story.current_state)} - #{format_type(story.story_type)} - #{story.estimate}"
-	puts story.url
+	puts "#{story.url} [#{story.labels}]"
 	puts
 end
