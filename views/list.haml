@@ -1,4 +1,8 @@
 %ul
+  - @queries.each do |key,value|
+    %li
+      %a(title=key href="/view/#{key}") "#{key}"
+%ul
   - @stories.each do |story|
     %li
       "#{story.name} - #{story.current_state} - #{story.story_type} - #{story.estimate}"

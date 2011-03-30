@@ -8,13 +8,12 @@ require 'yaml'
 
 $yaml = File.open('config.yml').read()
 $config = YAML::load( $yaml )
-puts "#{$config}".yellow
-puts "#{$config.keys}".green
 
 get '/view/:name' do |name|
 	@token = $config['token']
 	@id = $config['project']
-	@query = $config['queries'][name]
+	@queries = $config['queries']
+	@query = @queries[name]
 	
 	PivotalTracker::Client.token = @token
 	@project = PivotalTracker::Project.find(@id)
