@@ -1,0 +1,6 @@
+---
+token: <token>
+project: <project id>
+queries:
+  titleone: search owner:query
+  titletwo: some search queries

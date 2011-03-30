@@ -1,0 +1,5 @@
+%ul
+  - @queries.each do |key,value|
+    %li
+      %a(title=key href="/view/#{key}") "#{key}"
+
