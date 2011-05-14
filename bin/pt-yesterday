@@ -8,10 +8,9 @@
 # Requires the following gems
 # sudo gem install pivotal-tracker colored
 
-require 'rubygems'
 require 'pivotal-tracker'
 require 'colored'
-require '_common'
+require 'pivotal-summary'
 
 @token = `defaults read com.pivotaltracker token`
 @owner = `defaults read com.pivotaltracker name`
@@ -26,7 +25,7 @@ PivotalTracker::Client.token = @token
 @projects.each do |project|
 	begin
 		@a_project = PivotalTracker::Project.find(project.id)
-		puts project.name.yellow.bold
+		format_project(project)
 		stories = @a_project.stories.all(:owner => @owner,
 				:state => @state, 
 				:modified_since => @yesterday

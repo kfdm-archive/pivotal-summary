@@ -33,3 +33,7 @@ def format_story(story)
 	puts "#{story.url} [#{story.labels}]"
 	puts
 end
+
+def format_project(project)
+  puts "#{project.name.yellow.bold} - https://www.pivotaltracker.com/projects/#{project.id}"
+end
